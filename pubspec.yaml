@@ -1,0 +1,10 @@
+name: form_elements
+description: Reusable web components for forms
+author: Gulshan Singh <gsingh2011@gmail.com>
+homepage: http://gulshansingh.com
+version: "0.1.1"
+dependencies:
+  browser: '>=0.9.1 <0.10.0'
+  js: '>=0.2.2 <0.3.0'
+  sprintf: '>=1.0.7 <2.0.0'
+  polymer: '>=0.9.5 <0.10.0'

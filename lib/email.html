@@ -1,0 +1,15 @@
+<polymer-element name="x-email">
+  <template>
+    <ul>
+      <li>
+        <label for="{{_emailId}}">Email:</label>
+        <input id="{{_emailId}}" on-blur="validate" type="text" name="email">
+      </li>
+      <li>
+        <label for="{{_emailId}}" template instantiate="if showConfirm">Confirm Email:</label>
+        <input id="{{_confirmEmailId}}" on-blur="validate" type="text" name="confirm-email">
+      </li>
+    </ul>
+  </template>
+  <script type="application/dart" src="email.dart"></script>
+</polymer-element>
