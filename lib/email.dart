@@ -8,8 +8,8 @@ import 'required_component.dart';
 class Email extends RequiredComponent {
   @published String confirm;
   
-  String get _confirmEmailId => "confirm-email-" + xid;
-  String get _emailId => "email-" + xid;
+  String get confirmEmailId => "confirm-email-" + xid;
+  String get emailId => "email-" + xid;
   bool validEmail = false;
   bool emailConfirmed = true;
   bool get showConfirm => confirm == "true";
@@ -18,14 +18,14 @@ class Email extends RequiredComponent {
   Email.created() : super.created();
   
   String get email {
-    InputElement emailInput = $[_emailId];
+    InputElement emailInput = queryId(emailId);
     return emailInput.value;
   }
   
   void validate(Event e) {
     validateEmail();
   
-    if (first && e.target == $[_emailId]) {            
+    if (first && e.target == queryId(emailId)) {            
       first = false;
     } else {
       confirmEmail();
@@ -35,7 +35,7 @@ class Email extends RequiredComponent {
   }
   
   void validateEmail() {
-    InputElement emailInput = $[_emailId];
+    InputElement emailInput = queryId(emailId);
     RegExp validator = new RegExp(r'\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b',
                                   caseSensitive: false);
     String className;
@@ -47,8 +47,8 @@ class Email extends RequiredComponent {
   }
   
   void confirmEmail() {
-    InputElement emailInput = $[_emailId];
-    InputElement confirmInput = $[_confirmEmailId];
+    InputElement emailInput = queryId(emailId);
+    InputElement confirmInput = queryId(confirmEmailId);
     
     String className;
     if (emailInput.value == confirmInput.value) {
@@ -59,8 +59,8 @@ class Email extends RequiredComponent {
   }
   
   void updateEmailStyle(bool confirm) {
-    InputElement emailInput = $[_emailId];
-    InputElement confirmInput = $[_confirmEmailId];
+    InputElement emailInput = queryId(emailId);
+    InputElement confirmInput = queryId(confirmEmailId);
     String className;
     if (validEmail && emailConfirmed) {
       className = "valid";                
@@ -80,14 +80,14 @@ class Email extends RequiredComponent {
   }
   
   void check(List<String> errors) {
-    if (checkAndSetInvalid(email, "Email", _emailId, errors) && showConfirm) {
-      $[_confirmEmailId].classes.add("invalid");
+    if (checkAndSetInvalid(email, "Email", emailId, errors) && showConfirm) {
+      queryId(confirmEmailId).classes.add("invalid");
     }
   }
   
   void clear() {
-    InputElement emailInput = $[_emailId];
-    InputElement confirmInput = $[_confirmEmailId];
+    InputElement emailInput = queryId(emailId);
+    InputElement confirmInput = queryId(confirmEmailId);
     emailInput.value = "";
     confirmInput.value = "";
     emailInput.classes..remove('invalid')

@@ -6,10 +6,10 @@ import 'required_component.dart';
 
 @CustomTag('x-address')
 class Address extends RequiredComponent {
-  String get _streetId => "street-" + xid; 
-  String get _cityId => "city-" + xid; 
-  String get _stateId => "state-" + xid; 
-  String get _zipcodeId => "zipcode-" + xid;
+  String get streetId => "street-" + xid; 
+  String get cityId => "city-" + xid; 
+  String get stateId => "state-" + xid; 
+  String get zipcodeId => "zipcode-" + xid;
   
   @override
   void enteredView() {
@@ -19,19 +19,20 @@ class Address extends RequiredComponent {
   Address.created() : super.created();
   
   String get street {
-    InputElement inputElt = $[_streetId];
+    InputElement inputElt = queryId(streetId);
     return inputElt.value;
   }
   String get city {
-    InputElement inputElt = $[_cityId];
+    InputElement inputElt = queryId(cityId);
     return inputElt.value;
   }
   String get state {
-    SelectElement selectElt = $[_stateId];
+    // TODO: Clean this up
+    SelectElement selectElt = this.shadowRoot.querySelector("x-state-selector").shadowRoot.querySelector("#" + stateId);
     return selectElt.value;
   }
   String get zipcode {
-    InputElement inputElt = $[_zipcodeId];
+    InputElement inputElt = queryId(zipcodeId);
     return inputElt.value;
   }
 
@@ -40,15 +41,15 @@ class Address extends RequiredComponent {
   }
   
   void check(List<String> errors) {
-    checkAndSetInvalid(street, "Street", _streetId, errors);
-    checkAndSetInvalid(city, "City", _cityId, errors);
-    checkAndSetInvalid(zipcode, "Zipcode", _zipcodeId, errors);
+    checkAndSetInvalid(street, "Street", streetId, errors);
+    checkAndSetInvalid(city, "City", cityId, errors);
+    checkAndSetInvalid(zipcode, "Zipcode", zipcodeId, errors);
   }
   
   void clear() {
-    InputElement streetElt = $[_streetId];
-    InputElement cityElt = $[_cityId];
-    InputElement zipElt = $[_zipcodeId];
+    InputElement streetElt = queryId(streetId);
+    InputElement cityElt = queryId(cityId);
+    InputElement zipElt = queryId(zipcodeId);
     streetElt.value = ""; 
     cityElt.value = "";
     zipElt.value = "";
