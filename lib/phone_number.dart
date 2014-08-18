@@ -2,7 +2,6 @@ library phone_number;
 
 import 'package:polymer/polymer.dart';
 import 'dart:html';
-import 'dart:async';
 import 'required_component.dart';
 
 @CustomTag('x-phone-number')
@@ -24,13 +23,5 @@ class PhoneNumber extends RequiredComponent {
     phoneNumber.classes.remove('invalid');
   }
   
-  PhoneNumber.created() : super.created() {
-    Timer.run(() => _postInit(phoneNumberId));
-  }
-}     
-
-void _postInit(String id) {
-//  js.scoped(() {
-//    js.context["jQuery"]('#' + id)["mask"]("(999) 999-9999");
-//  });
+  PhoneNumber.created() : super.created();
 }   
