@@ -19,7 +19,7 @@ class Email extends RequiredComponent {
   
   String get email {
     InputElement emailInput = queryId(emailId);
-    return emailInput.value;
+    return emailInput.value.toLowerCase();
   }
   
   void validate(Event e) {
@@ -35,11 +35,10 @@ class Email extends RequiredComponent {
   }
   
   void validateEmail() {
-    InputElement emailInput = queryId(emailId);
     RegExp validator = new RegExp(r'\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b',
                                   caseSensitive: false);
     String className;
-    if (validator.hasMatch(emailInput.value)) {
+    if (validator.hasMatch(email)) {
       validEmail = true;
     } else {            
       validEmail = false;
