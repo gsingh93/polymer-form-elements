@@ -32,6 +32,7 @@ abstract class RequiredComponent extends PolymerElement {
       errors.add(sprintf("%s is a required field.", [fieldName]));
       return true;
     }
+    $[id].classes.remove("invalid");
     return false;
   }
 }

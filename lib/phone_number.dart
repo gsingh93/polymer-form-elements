@@ -14,7 +14,14 @@ class PhoneNumber extends RequiredComponent {
   }
   
   void check(List<String> errors) {
-    checkAndSetInvalid(phoneNumber, "Phone Number", phoneNumberId, errors);
+    if (!checkAndSetInvalid(phoneNumber, "Phone number", phoneNumberId, errors)) {
+      if (!phoneNumber.contains(new RegExp(r"^[0-9]{3}-[0-9]{3}-[0-9]{4}$"))) {
+        $[phoneNumberId].classes.add("invalid");
+        errors.add("Phone number should be in xxx-xxx-xxxx format");
+      } else {
+        $[phoneNumberId].classes.remove("invalid");
+      }
+    }
   }
   
   void clear() {

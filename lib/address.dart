@@ -43,7 +43,14 @@ class Address extends RequiredComponent {
   void check(List<String> errors) {
     checkAndSetInvalid(street, "Street", streetId, errors);
     checkAndSetInvalid(city, "City", cityId, errors);
-    checkAndSetInvalid(zipcode, "Zipcode", zipcodeId, errors);
+    if (!checkAndSetInvalid(zipcode, "Zipcode", zipcodeId, errors)) {
+      if (!zipcode.contains(new RegExp(r"^[0-9]{5}$"))) {
+        $[zipcodeId].classes.add("invalid");
+        errors.add("Invalid zipcode");
+      } else {
+        $[zipcodeId].classes.remove("invalid");
+      }
+    }
   }
   
   void clear() {
