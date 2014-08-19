@@ -32,6 +32,14 @@ class Email extends RequiredComponent {
       updateEmailStyle(true); 
     }
     updateEmailStyle(false);
+    
+    InputElement confirmInput = queryId(confirmEmailId);
+    String confirm = confirmInput.value;
+    // If the email is not required and both fields are empty, remove invalid
+    if (!isRequired && email == "" && confirm == "") {
+      queryId(emailId).classes.remove("invalid");
+      queryId(confirmEmailId).classes.remove("invalid");
+    }
   }
   
   void validateEmail() {

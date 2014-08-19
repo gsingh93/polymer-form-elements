@@ -27,10 +27,12 @@ abstract class RequiredComponent extends PolymerElement {
   
   bool checkAndSetInvalid(String field, String fieldName, String id,
                           List<String> errors) {
-    if (field == "") {
-      $[id].classes.add("invalid");
-      errors.add(sprintf("%s is a required field.", [fieldName]));
-      return true;
+    if (isRequired) {
+      if (field == "") {
+        $[id].classes.add("invalid");
+        errors.add(sprintf("%s is a required field.", [fieldName]));
+        return true;
+      }
     }
     $[id].classes.remove("invalid");
     return false;
