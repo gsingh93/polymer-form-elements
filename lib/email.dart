@@ -89,6 +89,14 @@ class Email extends RequiredComponent {
   void check(List<String> errors) {
     if (checkAndSetInvalid(email, "Email", emailId, errors) && showConfirm) {
       queryId(confirmEmailId).classes.add("invalid");
+      return;
+    }
+    if (email != "" && !validEmail) {
+      errors.add("Invalid email address");
+      queryId(emailId).classes.add("invalid");
+    }
+    if (!emailConfirmed) {
+      errors.add("Email addresses don't match");
     }
   }
   
