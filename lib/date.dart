@@ -6,9 +6,9 @@ import 'required_component.dart';
         
 @CustomTag('x-date')
 class Date extends RequiredComponent {
-  String get dayId => "x-date-day-" + xid;
-  String get monthId => "x-date-month-" + xid;
-  String get yearId => "x-date-year-" + xid;
+  String get dayId => "x-date-day";
+  String get monthId => "x-date-month";
+  String get yearId => "x-date-year";
   
   Date.created() : super.created();
   
