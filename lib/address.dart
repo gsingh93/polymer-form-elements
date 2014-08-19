@@ -37,7 +37,26 @@ class Address extends RequiredComponent {
   }
 
   String get address {
-    return street + ", " + city + ", " + state + ", " + zipcode;
+    return capitalize_words(street) + ", " + capitalize_words(city)
+        + ", " + state + ", " + zipcode;
+  }
+  
+  String capitalize_words(String s) {
+    String res = "";
+    var split = s.split(' ');
+    for (var s in split) {
+      if (s.trim() != "") {
+        res += capitalize(s.trim()) + " ";
+      }
+    }
+    return res.trimRight();
+  }
+  
+  String capitalize(String s) {
+    if (s.isEmpty) {
+      return "";
+    }
+    return s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
   }
   
   void check(List<String> errors) {
