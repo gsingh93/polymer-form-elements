@@ -6,8 +6,8 @@ import 'required_component.dart';
 
 @CustomTag('x-full-name')
 class FullName extends RequiredComponent {
-  String get firstNameId => "first-name-" + xid; 
-  String get lastNameId => "last-name-" + xid;
+  String get firstNameId => "first-name"; 
+  String get lastNameId => "last-name";
   
   FullName.created() : super.created();
   
@@ -19,7 +19,7 @@ class FullName extends RequiredComponent {
   String get lastName {
     InputElement lastNameElt = queryId(lastNameId);
     return lastNameElt.value;
-  }          
+  }
   
   String get fullName {
     return capitalize(firstName.trim()) + " " + capitalize(lastName.trim());
