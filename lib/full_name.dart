@@ -22,7 +22,7 @@ class FullName extends RequiredComponent {
   }          
   
   String get fullName {
-    return capitalize(firstName) + " " + capitalize(lastName);
+    return capitalize(firstName.trim()) + " " + capitalize(lastName.trim());
   }
   
   String capitalize(String s) {
@@ -33,8 +33,18 @@ class FullName extends RequiredComponent {
   }
   
   void check(List<String> errors) {
-    checkAndSetInvalid(firstName, "First Name", firstNameId, errors);
-    checkAndSetInvalid(lastName, "Last Name", lastNameId, errors);
+    if (!checkAndSetInvalid(firstName, "First Name", firstNameId, errors)) {
+      if (firstName.trim().split(' ').length != 1) {
+        errors.add("First name can only be one word");
+        queryId(firstNameId).classes.add("invalid");
+      }
+    }
+    if (!checkAndSetInvalid(lastName, "Last Name", lastNameId, errors)) {
+      if (lastName.trim().split(' ').length != 1) {
+        errors.add("Last name can only be one word");
+        queryId(lastNameId).classes.add("invalid");
+      }
+    }
   }
   
   void clear() {
