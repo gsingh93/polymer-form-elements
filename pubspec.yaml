@@ -1,7 +1,7 @@
 name: form_elements
 description: Reusable web components for forms
 author: Gulshan Singh <gsingh2011@gmail.com>
-homepage: http://gulshansingh.com
+homepage: https://github.com/gsingh93/polymer-form-elements
 version: "1.1.0"
 dependencies:
   browser: '>=0.10.0+2 <0.11.0'
